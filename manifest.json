@@ -1,0 +1,79 @@
+{
+  "manifest_version": 3,
+  "name": "价格换算成工作小时数",
+  "version": "0.1.0",
+  "description": "把商品价格换算为工作时间，帮助冷静消费。",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.amazon.com/*",
+    "https://www.amazon.co.uk/*",
+    "https://www.amazon.de/*",
+    "https://www.amazon.fr/*",
+    "https://www.amazon.it/*",
+    "https://www.amazon.es/*",
+    "https://www.amazon.ca/*",
+    "https://www.amazon.com.au/*",
+    "https://www.amazon.co.jp/*",
+    "https://www.amazon.in/*",
+    "https://www.amazon.com.br/*",
+    "https://www.amazon.com.mx/*",
+    "https://www.ebay.com/*",
+    "https://www.ebay.co.uk/*",
+    "https://www.target.com/*",
+    "https://www.walmart.com/*",
+    "https://www.bestbuy.com/*"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "src/options/options.html",
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.com/*",
+        "https://www.amazon.co.uk/*",
+        "https://www.amazon.de/*",
+        "https://www.amazon.fr/*",
+        "https://www.amazon.it/*",
+        "https://www.amazon.es/*",
+        "https://www.amazon.ca/*",
+        "https://www.amazon.com.au/*",
+        "https://www.amazon.co.jp/*",
+        "https://www.amazon.in/*",
+        "https://www.amazon.com.br/*",
+        "https://www.amazon.com.mx/*",
+        "https://www.ebay.com/*",
+        "https://www.ebay.co.uk/*",
+        "https://www.target.com/*",
+        "https://www.walmart.com/*",
+        "https://www.bestbuy.com/*"
+      ],
+      "js": [
+        "src/lib/price.js",
+        "src/lib/settings.js",
+        "src/lib/cooldown.js",
+        "src/content/selectors.js",
+        "src/content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

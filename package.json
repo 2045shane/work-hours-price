@@ -1,0 +1,1 @@
+{"name":"work-hours-price","version":"0.1.0","private":true,"description":"价格换算成工作小时数 Chrome MV3 插件","scripts":{"test":"node --test tests/","license":"node scripts/gen-license.mjs"}}
