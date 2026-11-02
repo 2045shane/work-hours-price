@@ -10,7 +10,7 @@ async function scan(){
  try{
   const permission=await chrome.runtime.sendMessage({type:'WHP_CONSUME'});if(!permission?.ok)throw new Error(permission?.error||'无法读取配额。');
   const {whpSettings}=await chrome.storage.local.get('whpSettings');const settings=W.normalizeSettings(whpSettings);
-  const found=W.findPrice(document,location.href,W.parsePrice);if(!found)throw new Error('未找到主价格；选择器未真站验收，请尝试商品详情页。');
+  const found=W.findPrice(document,location.href,W.parsePrice);if(!found)throw new Error('未找到主价格。请在商品详情页使用；若商品需要先选尺码/颜色，请选好后再试。');
   if(found.price.currency!==settings.currency)throw new Error(`商品币种 ${found.price.currency} 与时薪币种 ${settings.currency} 不同，请在插件中修改；不做汇率换算。`);
   const hours=W.toHours(found.price.amount,settings.hourlyWage);clearInterval(timer);annotation?.remove();
   annotation=document.createElement('div');annotation.setAttribute('data-whp-annotation','');
