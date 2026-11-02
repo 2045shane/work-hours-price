@@ -2,7 +2,7 @@
 'use strict';
 function parsePrice(text,fallback='USD'){
  if(typeof text!=='string')return null;
- const currency=/US\$|USD|\$/.test(text)?'USD':/€|EUR/.test(text)?'EUR':/£|GBP/.test(text)?'GBP':/¥|￥|CNY|RMB/.test(text)?'CNY':fallback;
+ const currency=/US\$|USD|\$/.test(text)?'USD':/€|EUR/.test(text)?'EUR':/£|GBP/.test(text)?'GBP':/JPY|円/.test(text)?'JPY':/¥|￥|CNY|RMB/.test(text)?(fallback==='JPY'?'JPY':'CNY'):fallback;
  const parts=text.replace(/[\u00a0\u202f]/g,' ').match(/\d+(?:[.,' ]\d+)*/g);
  if(!parts)return null;
  const values=parts.map(raw=>{
