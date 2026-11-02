@@ -23,7 +23,7 @@ class Element{
  remove(){this.removed=true;}
 }
 function content(b){
- let handler;const price=new Element('span');price.textContent='$100';const document={documentElement:new Element('html'),body:new Element('body'),createElement:t=>new Element(t),querySelector:()=>null,querySelectorAll:s=>s==='.a-price .a-offscreen'?[price]:[]};
+ let handler;const price=new Element('span');price.textContent='$100';const document={documentElement:new Element('html'),body:new Element('body'),createElement:t=>new Element(t),querySelector:()=>null,querySelectorAll:s=>s==='#corePrice_feature_div .apex-pricetopay-value .a-offscreen'?[price]:[]};
  const context=vm.createContext({URL,document,location:{href:'https://www.amazon.com/dp/test'},setInterval:()=>1,clearInterval:()=>{},chrome:{storage:{local:b.storage},runtime:{sendMessage:m=>b.send(m),onMessage:{addListener:f=>handler=f}}}});
  for(const file of ['lib/price.js','lib/settings.js','lib/cooldown.js','content/selectors.js','content/content.js'])vm.runInContext(fs.readFileSync(path.join(root,'src',file),'utf8'),context);
  return {price,document,scan:()=>new Promise(resolve=>handler({type:'WHP_SCAN'},{},resolve))};
